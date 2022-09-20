@@ -9,23 +9,32 @@ on:
 jobs:
   test:
     name: Test on ${{ matrix.os }}
-    runs-on: ${{ matrix.os }}
+    runs-on: self-hosted
     strategy:
       matrix:
         os: [ubuntu-latest]
 
     steps:
+      - run: touch starting_test_actionscheckout@v2_18
       - uses: actions/checkout@v2
+      - run: touch starting_test_actionssetup-java@v1_19
       - uses: actions/setup-java@v1
         with:
           java-version: '12.x'
+      - run: touch starting_test_subositoflutter-action@v1_22
       - uses: subosito/flutter-action@v1
         with:
           flutter-version: '3.0.2'
           channel: 'stable'
+      - run: touch starting_test_flutterpackagesget_26
       - run: flutter packages get
+      - run: touch starting_test_flutterformatlibtest--set-exit-if-changed_27
       - run: flutter format lib/ test/ --set-exit-if-changed
+      - run: touch starting_test_flutterpubrunimport_sorter_28
       - run: flutter pub run import_sorter:main --no-comments --exit-if-changed
+      - run: touch starting_test_flutteranalyze_29
       - run: flutter analyze
+      - run: touch starting_test_fluttertest_30
       - run: flutter test
   
+
